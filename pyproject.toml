@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "k8s-canary-rollback-agent"
+version = "0.1.0"
+description = "Autonomous agent that progressively shifts traffic to a Kubernetes canary deployment, watches Prometheus health signals at each stage, and auto-rolls-back on regression."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Felipe Feres" }]
+dependencies = []
+
+[project.optional-dependencies]
+live = ["requests>=2.32", "kubernetes>=31.0"]
+dev = ["pytest>=8.3"]
+
+[project.scripts]
+canary-rollback-agent = "canary_agent.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["canary_agent*"]
